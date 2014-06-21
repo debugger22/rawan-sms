@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 
 class Department(models.Model):
+
     """"
     This model holds information of a department.
 
@@ -23,6 +24,7 @@ class Department(models.Model):
 
 
 class Employee(models.Model):
+
     """
     This model holds information of an employee.
 
@@ -46,6 +48,7 @@ class Employee(models.Model):
 
 
 class Group(models.Model):
+
     """
     This model holds information of a custom group.
 
@@ -66,6 +69,7 @@ class Group(models.Model):
 
 
 class Message(models.Model):
+
     """
     This is a base class for a message.
     This is an immutable class and hence its fields can not be
@@ -90,32 +94,84 @@ class Message(models.Model):
         return self.text
 
 class EmployeeMessage(Message):
+
+    """
+    Extends Message. It is created when message is sent to
+    individual employees.
+
+    Fields
+    ======
+
+    employees : ManyToManyField
+        Holds information of the recepient employees.
+
+    """
     employees = models.ManyToManyField(Employee, related_name='+', blank=True)
 
 
 class DepartmentMessage(Message):
+
+    """
+    Extends Message. It is created when message is sent to
+    a department.
+
+    Fields
+    ======
+
+    department : ForeignKey
+        Holds information of the recepient department.
+
+    """
     department = models.ForeignKey(Department, related_name='+')
 
 
 class GroupMessage(Message):
+
+    """
+    Extends Message. It is created when message is sent to
+    a group.
+
+    Fields
+    ======
+
+    group : ForeignKey
+        Holds information of the recepient group.
+
+    """
     group = models.ForeignKey(Group, related_name='+')
 
 
 class GroupForm(ModelForm):
+
+    """
+    A form for group.
+    """
     class Meta:
         model = Group
 
 
 class EmployeeMessageForm(ModelForm):
+
+    """
+    A form for message to be sent to individual employees.
+    """
     class Meta:
         model = EmployeeMessage
 
 
 class DepartmentMessageForm(ModelForm):
+
+    """
+    A form for message to be sent to a department.
+    """
     class Meta:
         model = DepartmentMessage
 
 
 class GroupMessageForm(ModelForm):
+
+    """
+    A form for message to be sent to a custom group.
+    """
     class Meta:
         model = GroupMessage
