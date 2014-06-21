@@ -18,6 +18,21 @@
         <section class="card">
           <h1>By Employee</h1>
           <h2>Select individual employees you want to deliver SMS to</h2>
+          <form method="post" action="send/">
+              {% csrf_token %}
+              <!--
+              {% for field in employee_message_form %}
+              <div class="block-365 center clearfix">
+                    <label>{{ field.label }}</label>
+                    <div class="input-line">
+                        <input name="">
+                    </div>
+                </div>
+              {% endfor %}
+              -->
+              {{ employee_message_form.as_table }}
+              <input type="submit" value="Comment" />
+          </form>
         </section>
 
         <section class="card">
