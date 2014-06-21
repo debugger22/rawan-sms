@@ -6,7 +6,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'smsapp.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
+    url(r'^employeemessage/', 'smsapp.views.submit_employee_message_form', name='submit_employee_message_form'),
 
     url(r'^admin/', include(admin.site.urls)),
 )

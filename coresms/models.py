@@ -88,7 +88,7 @@ class Message(models.Model):
     """
     text = models.CharField(max_length=140, editable=True)
     time = models.DateTimeField(auto_now_add=True, editable=False)
-    sent_by = models.ForeignKey(User, related_name='+', editable=False)
+    sent_by = models.ForeignKey(User, related_name='+', editable=False, blank=True, null=True)
 
     def __unicode__(self):
         return self.text
@@ -151,13 +151,21 @@ class GroupForm(ModelForm):
         model = Group
 
 
-class EmployeeMessageForm(ModelForm):
+class _EmployeeMessageForm(ModelForm):
 
     """
     A form for message to be sent to individual employees.
     """
     class Meta:
         model = EmployeeMessage
+
+
+class EmployeeMessageForm(_EmployeeMessageForm):
+
+    def __init__(self, *args, **kwargs):
+        super(_EmployeeMessageForm, self).__init__(*args, **kwargs)
+        self.fields['employees'].help_text = '<br/>Hold down "Control", or "Command" on a Mac, to select more than one.'
+
 
 
 class DepartmentMessageForm(ModelForm):

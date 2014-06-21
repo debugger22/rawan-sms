@@ -102,12 +102,12 @@ h2 {
 }
 
 
-input, .card {
+input[type=text], .card {
   position:relative;
   z-index:2;
 }
 
-input {
+input[type=text] {
   display:block;
   width:26rem;
   margin:1rem 1rem 2rem;
@@ -119,7 +119,7 @@ input {
   transition:.5s, margin-bottom .15s;
 }
 
-input:focus {
+input[type=text]:focus {
   //margin:0 1rem 1rem;
   outline:0;
 }
@@ -128,3 +128,15 @@ input:focus {
   transform:translate3d(0,-10rem,0);
   opacity:0;
 }*/
+
+select {
+  display:block;
+  width:26rem;
+  margin:1rem 1rem 2rem;
+  border:0;
+  font-size:0.8rem;
+  padding:.75rem 1rem;
+  border-radius:3px;
+  box-shadow:-1px 1px 1px 1px #aaa;
+  transition:.5s, margin-bottom .15s;
+}

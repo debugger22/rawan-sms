@@ -17,17 +17,26 @@ def home(request):
     not logged in.
     """
     employee_message_form = EmployeeMessageForm()
-    employee_message_form.fields['employees'].queryset = Employee.objects.all()
+    employee_message_form.fields['employees'].queryset = Employee.objects.all().order_by('name')
 
     department_message_form = DepartmentMessageForm()
     department_message_form.fields[
-        'department'].queryset = Department.objects.all()
+        'department'].queryset = Department.objects.all().order_by('name')
 
     group_message_form = GroupMessageForm()
-    group_message_form.fields['group'].queryset = Group.objects.all()
+    group_message_form.fields['group'].queryset = Group.objects.all().order_by('name')
 
     return render(request,
                   'smspage.html',
                   {'employee_message_form': employee_message_form,
                    'department_message_form': department_message_form,
                    'group_message_form': group_message_form})
+
+
+@login_required
+def submit_employee_message_form(request):
+    if request.method == 'POST':
+      #request.POST['sent_by'] = request.user
+      employee_message = EmployeeMessageForm(request.POST.copy())
+      employee_message.save()
+      return HttpResponseRedirect('/')

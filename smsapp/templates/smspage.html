@@ -18,31 +18,31 @@
         <section class="card">
           <h1>By Employee</h1>
           <h2>Select individual employees you want to deliver SMS to</h2>
-          <form method="post" action="send/">
+          <form method="post" action="employeemessage/">
               {% csrf_token %}
-              <!--
-              {% for field in employee_message_form %}
-              <div class="block-365 center clearfix">
-                    <label>{{ field.label }}</label>
-                    <div class="input-line">
-                        <input name="">
-                    </div>
-                </div>
-              {% endfor %}
-              -->
               {{ employee_message_form.as_table }}
-              <input type="submit" value="Comment" />
+              <input type="submit" value="Send" />
           </form>
         </section>
 
         <section class="card">
           <h1>By Department</h1>
           <h2>Select a department you want to deliver SMS to</h2>
+          <form method="post" action="send/">
+              {% csrf_token %}
+              {{ department_message_form.as_table }}
+              <input type="submit" value="Send" />
+          </form>
         </section>
 
         <section class="card">
           <h1>By Custom Group</h1>
           <h2>Select or create a custom group of recepients</h2>
+          <form method="post" action="send/">
+              {% csrf_token %}
+              {{ group_message_form.as_table }}
+              <input type="submit" value="Send" />
+          </form>
         </section>
 
         <section class="card">
