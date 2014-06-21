@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -80,3 +81,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
+
+MY_STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MY_STATIC_URL = '/staticfiles/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+TEMPLATE_DIRS = (
+    BASE_DIR +'/smsapp/templates',
+)
+
+STATICFILES_DIRS = (
+    BASE_DIR + '/staticfiles',
+)
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = '/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

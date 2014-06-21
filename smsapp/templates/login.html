@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Rawan Cement Works - SMS delivery system</title>
+<link href="/static/reset.css" rel="stylesheet"/>
+<link href="/static/login.css" rel="stylesheet"/>
+</head>
+<body>
+    <main>
+        <div id="heading">
+            <image src="/static/logo.png" />
+
+            <image style="float:right;" src="/static/ultratech_logo.png" />
+        </div>
+        <h1 style="text-align: center;">Rawan Cement Works - SMS delivery system</h1><br/>
+
+{% load crispy_forms_tags %}
+
+{% block title %}<h1>Login</h1><br/><br/>{% endblock %}
+
+{% block toggle_login %}{% endblock %}
+
+{% block content %}
+<form action="{% url "login" %}" method="post" accept-charset="utf-8">
+    {{ form|crispy }}
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}" />
+    <input class="btn btn-default" type="submit" value="Login" />
+</form>
+{% endblock %}
+
+    </main>
+</body>
+</html>
