@@ -7,6 +7,8 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'smsapp.views.home', name='home'),
     url(r'^employeemessage/', 'smsapp.views.submit_employee_message_form', name='submit_employee_message_form'),
+    url(r'^departmentmessage/', 'smsapp.views.submit_department_message_form', name='submit_department_message_form'),
+    url(r'^groupmessage/', 'smsapp.views.submit_group_message_form', name='submit_group_message_form'),
 
     url(r'^admin/', include(admin.site.urls)),
 )

@@ -28,7 +28,7 @@
         <section class="card">
           <h1>By Department</h1>
           <h2>Select a department you want to deliver SMS to</h2>
-          <form method="post" action="send/">
+          <form method="post" action="departmentmessage/">
               {% csrf_token %}
               {{ department_message_form.as_table }}
               <input type="submit" value="Send" />
@@ -38,7 +38,7 @@
         <section class="card">
           <h1>By Custom Group</h1>
           <h2>Select or create a custom group of recepients</h2>
-          <form method="post" action="send/">
+          <form method="post" action="groupmessage/">
               {% csrf_token %}
               {{ group_message_form.as_table }}
               <input type="submit" value="Send" />
