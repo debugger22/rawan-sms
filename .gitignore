@@ -42,3 +42,7 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+
+#auth_credentials
+./smsapp/auth.txt
+./auth.txt
