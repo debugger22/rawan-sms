@@ -1,4 +1,3 @@
-import requests
 from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
@@ -6,7 +5,13 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from coresms.models import *
 
+def email_sender(email_list, message_body, subject):
+    from django.core.mail import send_email
+    email_list = list(email_list)
+    send_email(subject, message_body, "Ambar Mehrotra <ambar.prince@gmail.com", email_list)
+
 def send_sms(mnos, msg):
+    import requests
     fin = open("auth.txt", "r")
     lines = fin.readlines()
     lines = [i.strip() for i in lines]
@@ -19,7 +24,6 @@ def send_sms(mnos, msg):
     mno_list = "%3B".join(mnos)
     url = "https://site2sms.p.mashape.com/index.php?uid=%s&pwd=%s&phone=%s&msg=%s" % (uname, pwd, mno_list, msg)
     r = requests.get(url, headers=payload)
-    print r.text
 
 @login_required
 def home(request):
