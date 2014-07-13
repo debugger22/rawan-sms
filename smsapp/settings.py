@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'crispy_forms',
     'coresms',
+    'djrill',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -102,3 +103,6 @@ LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = '/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+MANDRILL_API_KEY = "pG6oD1CgVJgJflQg42sk4w"
+EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
