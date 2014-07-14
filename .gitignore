@@ -46,3 +46,6 @@ docs/_build/
 #auth_credentials
 ./smsapp/auth.txt
 ./auth.txt
+
+# sqlite
+*.sqlite3
