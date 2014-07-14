@@ -1,4 +1,5 @@
-import requests
+from __future__ import print_function
+
 from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
@@ -6,7 +7,9 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from coresms.models import *
 
+
 def send_sms(mnos, msg):
+    import requests
     fin = open("auth.txt", "r")
     lines = fin.readlines()
     lines = [i.strip() for i in lines]
@@ -19,7 +22,7 @@ def send_sms(mnos, msg):
     mno_list = "%3B".join(mnos)
     url = "https://site2sms.p.mashape.com/index.php?uid=%s&pwd=%s&phone=%s&msg=%s" % (uname, pwd, mno_list, msg)
     r = requests.get(url, headers=payload)
-    print r.text
+
 
 @login_required
 def home(request):
@@ -60,7 +63,7 @@ def submit_employee_message_form(request):
             employee_message.save()
             del employee_message
         except Employee.DoesNotExist:
-            print "Record doesn't exist!"
+            print("Record doesn't exist!")
         return HttpResponseRedirect('/')
 
 
@@ -78,7 +81,7 @@ def submit_department_message_form(request):
             department_message.save()
             del department_message
         except Department.DoesNotExist:
-            print "Department doesn't Exist!"
+            print("Department doesn't Exist!")
         return HttpResponseRedirect('/')
 
 
@@ -95,5 +98,5 @@ def submit_group_message_form(request):
             group_message.save()
             del group_message
         except Group.DoesNotExist:
-            print "Group doesn't exist!"
+            print("Group doesn't exist!")
         return HttpResponseRedirect('/')
